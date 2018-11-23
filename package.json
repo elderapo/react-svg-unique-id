@@ -12,7 +12,7 @@
   "author": "Tomasz Martyński <tomek@martynski.pl>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/elderapo/react-svg-unique-id"
   },
   "license": "MIT",
   "engines": {
