@@ -1,4 +1,4 @@
-import { Map } from 'core-js'
+import 'core-js/fn/map'
 import * as React from 'react'
 import { reactRecursiveChildrenMap } from './utils'
 
@@ -80,3 +80,5 @@ export class SVGUniqueID extends React.Component {
     return fixed
   }
 }
+
+export default SVGUniqueID
