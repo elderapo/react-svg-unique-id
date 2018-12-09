@@ -6,6 +6,7 @@
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/semjnuvpwjrtgj99?svg=true)](https://ci.appveyor.com/project/elderapo/react-svg-unique-id)
 [![Coveralls](https://img.shields.io/coveralls/elderapo/react-svg-unique-id.svg)](https://coveralls.io/github/elderapo/react-svg-unique-id)
 [![Dev Dependencies](https://david-dm.org/elderapo/react-svg-unique-id/dev-status.svg)](https://david-dm.org/elderapo/react-svg-unique-id?type=dev)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Felderapo%2Freact-svg-unique-id.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Felderapo%2Freact-svg-unique-id?ref=badge_shield)
 
 SVG processors like [SVGO](https://github.com/svg/svgo) optimize SVG ids which often results in duplicated ids across multiple SVGs. This library tries to fix that by replacing all children ids and id references (`#id`, `url(#id)`) in SVG tags with unique generated ids like `___SVG_ID__10__0___`.
 
@@ -53,3 +54,7 @@ export const SVG2 = () => (
 ```
 
 If both of these SVGs were not wrapped in `SVGUniqueID` component there would be an id collision since two html elements would have `prefix__bga` as thier id.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Felderapo%2Freact-svg-unique-id.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Felderapo%2Freact-svg-unique-id?ref=badge_large)
