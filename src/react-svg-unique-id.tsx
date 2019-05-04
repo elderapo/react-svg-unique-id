@@ -58,26 +58,21 @@ export class SVGUniqueID extends React.Component {
   }
 
   render() {
-    const fixed = reactRecursiveChildrenMap(
-      this.props.children,
-      (child: React.ReactElement<any>) => {
-        const fixedId = this.getHookedId(child.props.id)
+    return reactRecursiveChildrenMap(this.props.children, child => {
+      const fixedId = this.getHookedId(child.props.id)
 
-        const fixedProps = {
-          ...child.props
-        }
-
-        Object.keys(fixedProps).map(key => (fixedProps[key] = this.fixPropWithUrl(fixedProps[key])))
-
-        return React.cloneElement(child, {
-          ...fixedProps,
-          id: fixedId,
-          xlinkHref: this.getHookedXlinkHref(child.props.xlinkHref)
-        })
+      const fixedProps = {
+        ...child.props
       }
-    )
 
-    return fixed
+      Object.keys(fixedProps).map(key => (fixedProps[key] = this.fixPropWithUrl(fixedProps[key])))
+
+      return React.cloneElement(child, {
+        ...fixedProps,
+        id: fixedId,
+        xlinkHref: this.getHookedXlinkHref(child.props.xlinkHref)
+      })
+    })
   }
 }
 
