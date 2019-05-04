@@ -132,6 +132,6 @@
     "react": "^16.6.3"
   },
   "dependencies": {
-    "core-js": "^2.5.7"
+    "core-js": "^3.0.0"
   }
 }

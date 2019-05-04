@@ -1,4 +1,4 @@
-import 'core-js/fn/map'
+import 'core-js/features/map'
 import * as React from 'react'
 import { reactRecursiveChildrenMap } from './utils'
 
