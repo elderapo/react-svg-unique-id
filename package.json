@@ -131,6 +131,7 @@
     "react": "^16.6.3"
   },
   "dependencies": {
+    "@types/react-test-renderer": "^16.8.1",
     "core-js": "^3.0.0",
     "react-children-utilities": "^1.0.9"
   }
