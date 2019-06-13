@@ -89,8 +89,8 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.1.2",
-    "@commitlint/config-conventional": "^8.0.0",
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^7.1.2",
     "@types/core-js": "^2.5.0",
     "@types/jest": "^24.0.12",
     "@types/node": "^12.0.0",
@@ -114,7 +114,7 @@
     "rollup": "^1.11.2",
     "rollup-plugin-commonjs": "^9.1.8",
     "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.0.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-typescript2": "^0.21.0",
     "semantic-release": "^15.12.1",
