@@ -59,6 +59,10 @@ export class SVGUniqueID extends React.Component {
 
   render() {
     return reactRecursiveChildrenMap(this.props.children, child => {
+      if (typeof child === 'string' || typeof child === 'number') {
+        return child
+      }
+
       const fixedId = this.getHookedId(child.props.id)
 
       const fixedProps = {
