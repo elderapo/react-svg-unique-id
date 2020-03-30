@@ -4,6 +4,11 @@ import { reactRecursiveChildrenMap } from './utils'
 
 let SVG_GLOBAL_ID = 0
 
+/** @internal */
+export const resetSVGGlobalID = () => {
+  SVG_GLOBAL_ID = 0
+}
+
 export class SVGUniqueID extends React.Component {
   private svgId: number = SVG_GLOBAL_ID++
 
@@ -25,25 +30,27 @@ export class SVGUniqueID extends React.Component {
   }
 
   private fixPropWithUrl(prop: string): string {
-    if (typeof prop !== 'string' || !prop.includes('url(#')) {
+    if (typeof prop !== 'string') {
       return prop
     }
 
-    const id = prop.replace('url(#', '').replace(')', '')
+    const [_, id] = prop.match(/^url\(#(.*)\)$/) || [null, null]
+
     if (id === null) {
       return prop
     }
 
     const fixedId = this.getHookedId(id)
+
     if (fixedId === null) {
       return prop
     }
 
-    return prop.replace(id, fixedId)
+    return `url(#${fixedId})`
   }
 
   private getHookedXlinkHref(prop: string): string {
-    if (typeof prop !== 'string' || prop.indexOf('#') !== 0) {
+    if (typeof prop !== 'string' || !prop.startsWith('#')) {
       return prop
     }
 
@@ -54,7 +61,7 @@ export class SVGUniqueID extends React.Component {
       return prop
     }
 
-    return prop.replace(id, fixedId)
+    return `#${fixedId}`
   }
 
   render() {

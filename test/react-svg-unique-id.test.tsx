@@ -1,60 +1,66 @@
-import { SVGUniqueID } from '../src/react-svg-unique-id'
+import { SVGUniqueID, resetSVGGlobalID } from '../src/react-svg-unique-id'
 import * as React from 'react'
 import { create } from 'react-test-renderer'
-
-const inlinedSVG = (
-  <svg width="100%" height="100%" viewBox="0 0 60 64">
-    <defs>
-      <linearGradient id="prefix__bga" />
-    </defs>
-    <g fillRule="nonzero" fill="none">
-      <use xlinkHref="#prefix__bga" />
-      <path fill="url(#prefix__bga)" />
-    </g>
-  </svg>
-)
-const InlinedWrappedSVG = () => (
-  <svg width="100%" height="100%" viewBox="0 0 60 64">
-    <defs>
-      <linearGradient id="prefix__bga" />
-    </defs>
-    <g fillRule="nonzero" fill="none">
-      <use xlinkHref="#prefix__bga" />
-      <path fill="url(#prefix__bga)" />
-    </g>
-  </svg>
-)
+import * as util from 'util'
 
 describe('test', () => {
-  it('should have original IDS in inlined svg', () => {
-    const { root } = create(inlinedSVG)
-
-    expect(root.findAll(node => node.props.id === 'prefix__bga').length).toBe(1)
-    expect(root.findAll(node => node.props.xlinkHref === '#prefix__bga').length).toBe(1)
-    expect(root.findAll(node => node.props.fill === 'url(#prefix__bga)').length).toBe(1)
+  beforeEach(() => {
+    resetSVGGlobalID()
   })
 
-  it('should have original IDS in wrapped inlined svg', () => {
-    const { root } = create(<InlinedWrappedSVG />)
+  it('should correctly replace props', () => {
+    const original = (
+      <svg width="100%" height="100%" viewBox="0 0 60 64">
+        <defs>
+          <linearGradient id="prefix__bga" />
+        </defs>
+        <g fillRule="nonzero" fill="none">
+          <use xlinkHref="#prefix__bga" />
+          <path fill="url(#prefix__bga)" />
+        </g>
+      </svg>
+    )
 
-    expect(root.findAll(node => node.props.id === 'prefix__bga').length).toBe(1)
-    expect(root.findAll(node => node.props.xlinkHref === '#prefix__bga').length).toBe(1)
-    expect(root.findAll(node => node.props.fill === 'url(#prefix__bga)').length).toBe(1)
+    const { root: originalRoot } = create(original)
+
+    expect(originalRoot.findByType('linearGradient').props.id).toBe('prefix__bga')
+    expect(originalRoot.findByType('use').props.xlinkHref).toBe('#prefix__bga')
+    expect(originalRoot.findByType('path').props.fill).toBe('url(#prefix__bga)')
+
+    const wrapped = <SVGUniqueID>{original}</SVGUniqueID>
+
+    const { root: wrappedRoot } = create(wrapped)
+
+    expect(wrappedRoot.findByType('linearGradient').props.id).toBe('___SVG_ID__0__0___')
+    expect(wrappedRoot.findByType('use').props.xlinkHref).toBe('#___SVG_ID__0__0___')
+    expect(wrappedRoot.findByType('path').props.fill).toBe('url(#___SVG_ID__0__0___)')
   })
 
-  it('should replace original IDS in inlined svg', () => {
-    const { root } = create(<SVGUniqueID>{inlinedSVG}</SVGUniqueID>)
+  it('should work with url like props', () => {
+    const original = (
+      <svg width="100%" height="100%" viewBox="0 0 60 64">
+        <defs>
+          <linearGradient id="l" />
+        </defs>
+        <g fillRule="nonzero" fill="none">
+          <use xlinkHref="#l" />
+          <path fill="url(#l)" />
+        </g>
+      </svg>
+    )
 
-    expect(root.findAll(node => node.props.id === 'prefix__bga').length).toBe(0)
-    expect(root.findAll(node => node.props.xlinkHref === '#prefix__bga').length).toBe(0)
-    expect(root.findAll(node => node.props.fill === 'url(#prefix__bga)').length).toBe(0)
-  })
+    const { root: originalRoot } = create(original)
 
-  it('should replace original IDS in inlined wrapped', () => {
-    const { root } = create(<SVGUniqueID>{inlinedSVG}</SVGUniqueID>)
+    expect(originalRoot.findByType('linearGradient').props.id).toBe('l')
+    expect(originalRoot.findByType('use').props.xlinkHref).toBe('#l')
+    expect(originalRoot.findByType('path').props.fill).toBe('url(#l)')
 
-    expect(root.findAll(node => node.props.id === 'prefix__bga').length).toBe(0)
-    expect(root.findAll(node => node.props.xlinkHref === '#prefix__bga').length).toBe(0)
-    expect(root.findAll(node => node.props.fill === 'url(#prefix__bga)').length).toBe(0)
+    const wrapped = <SVGUniqueID>{original}</SVGUniqueID>
+
+    const { root: wrappedRoot } = create(wrapped)
+
+    expect(wrappedRoot.findByType('linearGradient').props.id).toBe('___SVG_ID__0__0___')
+    expect(wrappedRoot.findByType('use').props.xlinkHref).toBe('#___SVG_ID__0__0___')
+    expect(wrappedRoot.findByType('path').props.fill).toBe('url(#___SVG_ID__0__0___)')
   })
 })
