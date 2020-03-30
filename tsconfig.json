@@ -9,6 +9,7 @@
     "sourceMap": true,
     "declaration": true,
     "jsx": "react",
+    "stripInternal": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "declarationDir": "dist/types",
