@@ -66,7 +66,7 @@ export class SVGUniqueID extends React.Component {
 
   render() {
     return reactRecursiveChildrenMap(this.props.children, child => {
-      if (typeof child === 'string' || typeof child === 'number') {
+      if (!child || typeof child === 'string' || typeof child === 'number' || !('props' in child)) {
         return child
       }
 
