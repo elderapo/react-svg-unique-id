@@ -6745,10 +6745,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-children-utilities@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/react-children-utilities/-/react-children-utilities-1.2.1.tgz#3c68537201892f3de481154d74577c609af93f42"
-  integrity sha512-q6jorAsOx6qXR7iYuqlMlrbwKPdZQcnap+Q3XTGLxOkdUFnZvpd2XRAI+gg5aOuPgUvsMcMiom9N01wpOZi1sg==
+react-children-utilities@^2.0.12:
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/react-children-utilities/-/react-children-utilities-2.0.12.tgz#75dcb4eded7d1a2509d68f52a0b13fc00694165f"
+  integrity sha512-SqoczHew6ZQahJmI2EE3JZWefVHtwknqIx0zhdpJNYdyCXZNDm+7k+1ZAnZCOUY9anXh+O52b0eeLrqOdXvTeQ==
 
 react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.8.6"
