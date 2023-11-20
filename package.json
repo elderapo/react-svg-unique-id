@@ -128,7 +128,7 @@
     "typescript": "^3.0.3"
   },
   "peerDependencies": {
-    "react": "^16.6.3"
+    "react": ">^16.6.3"
   },
   "dependencies": {
     "core-js": "^3.0.0",
